@@ -1,4 +1,3 @@
-```python  <--- DELETE THIS ABSOLUTE FIRST LINE
 import streamlit as st
 import pandas as pd
 import requests
