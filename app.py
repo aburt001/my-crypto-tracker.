@@ -78,10 +78,25 @@ df_balances = get_live_balances()
 @st.cache_data(ttl=30)  # Refreshes price feeds every 30 seconds
 def get_live_prices(asset_list):
     # Map symbols to CoinGecko API request tokens
-    cg_mapping = {
-        'BTC': 'bitcoin', 'ETH': 'ethereum', 'XLM': 'stellar', 
-        'OSMO': 'osmosis', 'LIT': 'litentry', 'ASRR': 'asrr'
-    }
+    
+   # Map Kraken & Crypto.com symbols directly to CoinGecko search IDs
+   cg_mapping = {
+       'BTC': 'bitcoin', 'XXBT': 'bitcoin',
+       'ETH': 'ethereum', 'XETH': 'ethereum',
+       'XLM': 'stellar', 'XXLM': 'stellar',
+       'OSMO': 'osmosis', 'LIT': 'litentry', 'ASRR': 'asrr',
+       'ATOM21.S': 'cosmos', 'ATOM': 'cosmos',
+       'DYM': 'dymension',
+       'NANO': 'nano',
+       'NEX': 'neon-exchange',
+       'RAIN': 'rainicorn',
+       'SCRT21.S': 'secret', 'SCRT': 'secret',
+       'TON': 'the-open-network',
+       'TRX.B': 'tron', 'TRX': 'tron',
+       'XXDG': 'dogecoin', 'DOGE': 'dogecoin',
+       'XZEC': 'zcash',
+       'ZUSD': 'usd-coin'
+   }
     ids = ",".join([cg_mapping[a] for a in asset_list if a in cg_mapping])
     url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd"
     
