@@ -100,6 +100,31 @@ def get_live_prices(asset_list):
     ids = ",".join([cg_mapping[a] for a in asset_list if a in cg_mapping])
     url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd"
     
+    # --- LIVE PRICE FETCHING ENGINE ---
+@st.cache_data(ttl=30)  # Refreshes price feeds every 30 seconds
+def get_live_prices(asset_list):
+    # Map Kraken & Crypto.com symbols directly to CoinGecko search IDs
+    cg_mapping = {
+        'BTC': 'bitcoin', 'XXBT': 'bitcoin',
+        'ETH': 'ethereum', 'XETH': 'ethereum',
+        'XLM': 'stellar', 'XXLM': 'stellar',
+        'OSMO': 'osmosis', 'LIT': 'litentry', 'ASRR': 'asrr',
+        'ATOM21.S': 'cosmos', 'ATOM': 'cosmos',
+        'DYM': 'dymension',
+        'NANO': 'nano',
+        'NEX': 'neon-exchange',
+        'RAIN': 'rainicorn',
+        'SCRT21.S': 'secret', 'SCRT': 'secret',
+        'TON': 'the-open-network',
+        'TRX.B': 'tron', 'TRX': 'tron',
+        'XXDG': 'dogecoin', 'DOGE': 'dogecoin',
+        'XZEC': 'zcash',
+        'ZUSD': 'usd-coin'
+    }
+    
+    ids = ",".join([cg_mapping[a] for a in asset_list if a in cg_mapping])
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd"
+    
     try:
         response = requests.get(url).json()
         return {
@@ -108,11 +133,25 @@ def get_live_prices(asset_list):
             'XLM': response.get('stellar', {}).get('usd', 0.12),
             'OSMO': response.get('osmosis', {}).get('usd', 0.85),
             'LIT': response.get('litentry', {}).get('usd', 0.75),
-            'ASRR': response.get('asrr', {}).get('usd', 0.05)
+            'ASRR': response.get('asrr', {}).get('usd', 0.05),
+            'ATOM21.S': response.get('cosmos', {}).get('usd', 8.50),
+            'DYM': response.get('dymension', {}).get('usd', 1.50),
+            'NANO': response.get('nano', {}).get('usd', 0.90),
+            'NEX': response.get('neon-exchange', {}).get('usd', 0.10),
+            'RAIN': response.get('rainicorn', {}).get('usd', 0.01),
+            'SCRT21.S': response.get('secret', {}).get('usd', 0.30),
+            'TON': response.get('the-open-network', {}).get('usd', 5.00),
+            'TRX.B': response.get('tron', {}).get('usd', 0.11),
+            'XXDG': response.get('dogecoin', {}).get('usd', 0.14),
+            'XZEC': response.get('zcash', {}).get('usd', 30.00),
+            'ZUSD': response.get('usd-coin', {}).get('usd', 1.00)
         }
     except:
-        return {'BTC': 65000.0, 'ETH': 3300.0, 'XLM': 0.12, 'OSMO': 0.85, 'LIT': 0.75, 'ASRR': 0.05}
-
+        return {
+            'BTC': 65000.0, 'ETH': 3300.0, 'XLM': 0.12, 'OSMO': 0.85, 'LIT': 0.75, 'ASRR': 0.05,
+            'ATOM21.S': 8.50, 'DYM': 1.50, 'NANO': 0.90, 'NEX': 0.10, 'RAIN': 0.01, 'SCRT21.S': 0.30,
+            'TON': 5.00, 'TRX.B': 0.11, 'XXDG': 0.14, 'XZEC': 30.00, 'ZUSD': 1.00
+        }
 if not df_balances.empty:
     unique_assets = df_balances['Asset'].unique().tolist()  # <-- ADD .tolist() HERE
     prices = get_live_prices(unique_assets)
