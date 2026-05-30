@@ -17,7 +17,9 @@ df = pd.DataFrame({
     'Asset': ['BTC', 'ETH', 'XLM', 'OSMO', 'LIT', 'ASRR'],
     'Balance': [0.45, 3.20, 12500.0, 850.0, 310.0, 1500.0]  # <-- Change these numbers to match your wallets!
 })
-})
+})  # <--- THIS IS THE STRAY LINE CAUSING THE CRASH! DELETE THIS LINE.
+
+
 
 # --- LIVE PRICE FETCHING ENGINE ---
 @st.cache_data(ttl=60)  # Caches the data for 60 seconds so you don't hit API rate limits
