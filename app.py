@@ -78,7 +78,8 @@ df_balances = get_live_balances()
 @st.cache_data(ttl=30)  # Refreshes price feeds every 30 seconds
 def get_live_prices(asset_list):
   # --- LIVE PRICE FETCHING ENGINE ---
-@st.cache_data(ttl=30)  # Refreshes price feeds every 30 seconds
+  # Refreshes price feeds every 30 seconds
+@st.cache_data(ttl=30)  
 def get_live_prices(asset_list):
     # Map Kraken & Crypto.com symbols directly to CoinGecko search IDs
     cg_mapping = {
