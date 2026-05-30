@@ -100,7 +100,7 @@ def get_live_prices(asset_list):
     ids = ",".join([cg_mapping[a] for a in asset_list if a in cg_mapping])
     url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd"
     
-    # --- LIVE PRICE FETCHING ENGINE ---
+   # --- LIVE PRICE FETCHING ENGINE ---
 @st.cache_data(ttl=30)  # Refreshes price feeds every 30 seconds
 def get_live_prices(asset_list):
     # Map Kraken & Crypto.com symbols directly to CoinGecko search IDs
@@ -151,6 +151,7 @@ def get_live_prices(asset_list):
             'BTC': 65000.0, 'ETH': 3300.0, 'XLM': 0.12, 'OSMO': 0.85, 'LIT': 0.75, 'ASRR': 0.05,
             'ATOM21.S': 8.50, 'DYM': 1.50, 'NANO': 0.90, 'NEX': 0.10, 'RAIN': 0.01, 'SCRT21.S': 0.30,
             'TON': 5.00, 'TRX.B': 0.11, 'XXDG': 0.14, 'XZEC': 30.00, 'ZUSD': 1.00
+        }
         }
 if not df_balances.empty:
     unique_assets = df_balances['Asset'].unique().tolist()  # <-- ADD .tolist() HERE
