@@ -122,7 +122,7 @@ def get_live_prices(asset_list):
             'RAIN': 0.01, 'SCRT21.S': 0.30, 'TON': 5.00, 'TRX.B': 0.11, 'XXDG': 0.14, 
             'XZEC': 30.00, 'ZUSD': 1.00
         }
-        }
+        
 if not df_balances.empty:
     unique_assets = df_balances['Asset'].unique().tolist()  # <-- ADD .tolist() HERE
     prices = get_live_prices(unique_assets)
