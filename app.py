@@ -1,19 +1,25 @@
-# 1. Your local portfolio mapping (Add your exact balances here)
-import streamlit as st
-import requests
-import pandas as pd
-import plotly.express as px
+# --- DISPLAY THE DASHBOARD ---
+st.title("🧮 My Crypto Portfolio Tracker")
 
-portfolio_data = [
-    {"id": "bitcoin", "symbol": "BTC", "holdings": 0.45, "location": "Exchange A"},
-    {"id": "ethereum", "symbol": "ETH", "holdings": 2.10, "location": "Exchange B"},
-    {"id": "solana", "symbol": "SOL", "holdings": 15.5, "location": "Cold Wallet"},
-    
-    # Your new Kraken additions
-    {"id": "ripple", "symbol": "XRP", "holdings": 500.0, "location": "Kraken"},
-    {"id": "stellar", "symbol": "XLM", "holdings": 1200.0, "location": "Kraken"},
-    
-    # Your new Crypto.com additions
-    {"id": "crypto-com-chain", "symbol": "CRO", "holdings": 2500.0, "location": "Crypto.com"},
-    {"id": "polkadot", "symbol": "DOT", "holdings": 45.0, "location": "Crypto.com"}
-]
+# Display a simple data table of your assets
+st.subheader("Asset Breakdown")
+st.write("Here is the current status of your tracked exchange balances:")
+
+# (Assuming your portfolio data is stored in a DataFrame named 'df')
+# If your variable has a different name, change 'df' to match your variable
+try:
+    st.dataframe(df)
+except NameError:
+    st.info("Data loaded successfully! Ready to build custom charts.")# --- DISPLAY THE DASHBOARD ---
+st.title("🧮 My Crypto Portfolio Tracker")
+
+# Display a simple data table of your assets
+st.subheader("Asset Breakdown")
+st.write("Here is the current status of your tracked exchange balances:")
+
+# (Assuming your portfolio data is stored in a DataFrame named 'df')
+# If your variable has a different name, change 'df' to match your variable
+try:
+    st.dataframe(df)
+except NameError:
+    st.info("Data loaded successfully! Ready to build custom charts.")
