@@ -1,4 +1,9 @@
 # 1. Your local portfolio mapping (Add your exact balances here)
+import streamlit as st
+import requests
+import pandas as pd
+import plotly.express as px
+
 portfolio_data = [
     {"id": "bitcoin", "symbol": "BTC", "holdings": 0.45, "location": "Exchange A"},
     {"id": "ethereum", "symbol": "ETH", "holdings": 2.10, "location": "Exchange B"},
