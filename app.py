@@ -12,13 +12,14 @@ st.markdown("---")
 
 # --- ACTUAL EXCHANGE PORTFOLIO DATA ---
 # Update the balances below with your current token counts
+# --- ACTUAL EXCHANGE PORTFOLIO DATA ---
 df = pd.DataFrame({
     'Exchange': ['Kraken', 'Crypto.com', 'Kraken', 'Crypto.com', 'Kraken', 'Crypto.com'],
     'Asset': ['BTC', 'ETH', 'XLM', 'OSMO', 'LIT', 'ASRR'],
-    'Balance': [0.45, 3.20, 12500.0, 850.0, 310.0, 1500.0]  # <-- Change these numbers to match your wallets!
+    'Balance': [0.45, 3.20, 12500.0, 850.0, 310.0, 1500.0]
 })
-})  # <--- THIS IS THE STRAY LINE CAUSING THE CRASH! DELETE THIS LINE.
 
+# --- LIVE PRICE FETCHING ENGINE ---
 
 
 # --- LIVE PRICE FETCHING ENGINE ---
