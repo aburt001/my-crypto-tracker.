@@ -99,7 +99,7 @@ def get_live_prices(asset_list):
         return {'BTC': 65000.0, 'ETH': 3300.0, 'XLM': 0.12, 'OSMO': 0.85, 'LIT': 0.75, 'ASRR': 0.05}
 
 if not df_balances.empty:
-    unique_assets = df_balances['Asset'].unique()
+    unique_assets = df_balances['Asset'].unique().tolist()  # <-- ADD .tolist() HERE
     prices = get_live_prices(unique_assets)
     
     df_balances['Live Price (USD)'] = df_balances['Asset'].map(prices).fillna(0.0)
