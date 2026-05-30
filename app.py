@@ -10,12 +10,13 @@ st.set_page_config(page_title="Crypto Portfolio Tracker", page_icon="🧮", layo
 st.title("🧮 My Crypto Portfolio Tracker")
 st.markdown("---")
 
-# --- MOCK EXCHANGE PORTFOLIO DATA ---
-# (You can expand this with your exact active wallet numbers later)
+# --- ACTUAL EXCHANGE PORTFOLIO DATA ---
+# Update the balances below with your current token counts
 df = pd.DataFrame({
     'Exchange': ['Kraken', 'Crypto.com', 'Kraken', 'Crypto.com', 'Kraken', 'Crypto.com'],
     'Asset': ['BTC', 'ETH', 'XLM', 'OSMO', 'LIT', 'ASRR'],
-    'Balance': [0.45, 3.20, 12500.0, 850.0, 310.0, 1500.0]
+    'Balance': [0.45, 3.20, 12500.0, 850.0, 310.0, 1500.0]  # <-- Change these numbers to match your wallets!
+})
 })
 
 # --- LIVE PRICE FETCHING ENGINE ---
